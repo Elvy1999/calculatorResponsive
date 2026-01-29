@@ -44,6 +44,7 @@ function numberKey(number) {
 
 function operatorKey(operator) {
   if (operatorFlag == false) {
+
     textStream += operator;
     calcResult.innerHTML = textStream;
     operatorFlag = true;
@@ -100,5 +101,9 @@ function equalsEvaluation() {
   }
   //calcResultLocal = runningTotal;
   //calcHistory.innerHTML = runningTotal;
-  if (divideZeroFlag == false) calcResult.innerHTML = runningTotal;
+  if (divideZeroFlag == false) {
+    calcResultLocal = runningTotal;
+    calcResult.innerHTML = runningTotal;
+
+  }
 }
