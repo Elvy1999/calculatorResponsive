@@ -84,6 +84,9 @@ body {
   background: #ffb347;
   color: #1a1a1a;
 }
+.calculator__keys .key--wide {
+  grid-column: span 2;
+}
 .calculator__keys .key--zero {
   grid-column: span 2;
 }

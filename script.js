@@ -54,6 +54,7 @@ function actionKey(action) {
   if (action == "clear") {
     calcHistory.innerHTML = 0;
     calcResult.innerHTML = 0;
+    runningTotal = 0;
     textStream = "";
   }
   if (action == "equals") {
@@ -62,6 +63,7 @@ function actionKey(action) {
 }
 
 function equalsEvaluation() {
+  let divideZeroFlag = false;
   let numbersList = [];
   let operandList = [];
   const operators = ["+", "-", "*", "/"];
@@ -88,9 +90,15 @@ function equalsEvaluation() {
     console.log(numbersList);
     let secondNum = numbersList.shift();
     let operation = operandList.shift();
+    if (operation == "/" && secondNum == 0) {
+      calcResult.innerHTML = "Cant do that boo";
+      divideZeroFlag = true;
+      textStream = "";
+      break;
+    }
     runningTotal = operations[operation](runningTotal, secondNum);
   }
   //calcResultLocal = runningTotal;
   //calcHistory.innerHTML = runningTotal;
-  calcResult.innerHTML = runningTotal;
+  if (divideZeroFlag == false) calcResult.innerHTML = runningTotal;
 }

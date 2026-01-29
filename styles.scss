@@ -103,6 +103,10 @@ body {
         color: #1a1a1a;
       }
 
+      &--wide {
+        grid-column: span 2;
+      }
+
       &--zero {
         grid-column: span 2;
       }
