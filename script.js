@@ -55,4 +55,26 @@ function actionKey(action) {
     calcResult.innerHTML = 0;
     textStream = "";
   }
+  if (action == "equals") {
+    equalsEvaluation();
+  }
+}
+
+function equalsEvaluation() {
+  let numbersList = [];
+  let operandList = [];
+  const operators = ["+", "-", "*", "/"];
+  let temp = "";
+  for (let val of textStream) {
+    if (!operators.includes(val)) temp += val;
+    else {
+      numbersList.push(Number(temp));
+      temp = "";
+      operandList.push(val);
+    }
+  }
+  numbersList.push(Number(temp)); // adds the last number to the numbersList
+
+  console.log(numbersList);
+  console.log(operandList);
 }
