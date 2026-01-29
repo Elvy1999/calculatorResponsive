@@ -6,6 +6,7 @@ const keys = document.querySelector(".calculator__keys");
 // local variables
 let textStream = "";
 let operatorFlag = false;
+let calcResultLocal;
 
 // Create an event listener on the .calculator__keys container
 // and use event delegation to determine which child .key
@@ -64,6 +65,13 @@ function equalsEvaluation() {
   let numbersList = [];
   let operandList = [];
   const operators = ["+", "-", "*", "/"];
+  const operations = {
+    "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
+    "*": (a, b) => a * b,
+    "/": (a, b) => a / b,
+  };
+
   let temp = "";
   for (let val of textStream) {
     if (!operators.includes(val)) temp += val;
@@ -74,7 +82,15 @@ function equalsEvaluation() {
     }
   }
   numbersList.push(Number(temp)); // adds the last number to the numbersList
-
-  console.log(numbersList);
-  console.log(operandList);
+  // Performing the calculation
+  let runningTotal = numbersList.shift();
+  while (numbersList.length != 0) {
+    console.log(numbersList);
+    let secondNum = numbersList.shift();
+    let operation = operandList.shift();
+    runningTotal = operations[operation](runningTotal, secondNum);
+  }
+  //calcResultLocal = runningTotal;
+  //calcHistory.innerHTML = runningTotal;
+  calcResult.innerHTML = runningTotal;
 }
