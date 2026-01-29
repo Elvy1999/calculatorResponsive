@@ -1,0 +1,126 @@
+$bg: #0f1115;
+$panel: #151922;
+$screen: #0b0e14;
+$accent: #ffb347;
+$operator: #4dabf7;
+$action: #f06595;
+$text: #f8f9fa;
+$muted: #b3b7c3;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  background: radial-gradient(circle at 15% 15%, #1f2430 0%, #0f1115 55%);
+  color: $text;
+  min-height: 100vh;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  padding: 2rem 1rem;
+}
+
+.calculator {
+  width: min(420px, 92vw);
+  background: $panel;
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+  display: grid;
+  gap: 1.5rem;
+
+  &__screen {
+    background: $screen;
+    border-radius: 18px;
+    padding: 1.25rem 1.5rem;
+    display: grid;
+    gap: 0.5rem;
+    text-align: right;
+
+    .calculator__history {
+      font-size: 0.95rem;
+      color: $muted;
+      min-height: 1.2rem;
+    }
+
+    .calculator__result {
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      word-break: break-all;
+    }
+  }
+
+  &__keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+
+    .key {
+      border: none;
+      border-radius: 16px;
+      padding: 0.9rem 0.6rem;
+      background: #222635;
+      color: $text;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition:
+        transform 0.08s ease,
+        box-shadow 0.12s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+      }
+
+      &:active {
+        transform: translateY(0);
+        box-shadow: none;
+      }
+
+      &--operator {
+        background: rgba($operator, 0.2);
+        color: $operator;
+      }
+
+      &--action {
+        background: rgba($action, 0.2);
+        color: $action;
+      }
+
+      &--equal {
+        background: $accent;
+        color: #1a1a1a;
+      }
+
+      &--zero {
+        grid-column: span 2;
+      }
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .calculator {
+    padding: 1.2rem;
+
+    &__keys {
+      gap: 0.6rem;
+
+      .key {
+        padding: 0.8rem 0.5rem;
+        font-size: 1rem;
+      }
+    }
+  }
+}

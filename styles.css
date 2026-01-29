@@ -1,0 +1,102 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+  background: radial-gradient(circle at 15% 15%, #1f2430 0%, #0f1115 55%);
+  color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  padding: 2rem 1rem;
+}
+
+.calculator {
+  width: min(420px, 92vw);
+  background: #151922;
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+  display: grid;
+  gap: 1.5rem;
+}
+.calculator__screen {
+  background: #0b0e14;
+  border-radius: 18px;
+  padding: 1.25rem 1.5rem;
+  display: grid;
+  gap: 0.5rem;
+  text-align: right;
+}
+.calculator__screen .calculator__history {
+  font-size: 0.95rem;
+  color: #b3b7c3;
+  min-height: 1.2rem;
+}
+.calculator__screen .calculator__result {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  word-break: break-all;
+}
+.calculator__keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+.calculator__keys .key {
+  border: none;
+  border-radius: 16px;
+  padding: 0.9rem 0.6rem;
+  background: #222635;
+  color: #f8f9fa;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.08s ease, box-shadow 0.12s ease;
+}
+.calculator__keys .key:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+.calculator__keys .key:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+.calculator__keys .key--operator {
+  background: rgba(77, 171, 247, 0.2);
+  color: #4dabf7;
+}
+.calculator__keys .key--action {
+  background: rgba(240, 101, 149, 0.2);
+  color: #f06595;
+}
+.calculator__keys .key--equal {
+  background: #ffb347;
+  color: #1a1a1a;
+}
+.calculator__keys .key--zero {
+  grid-column: span 2;
+}
+
+@media (max-width: 420px) {
+  .calculator {
+    padding: 1.2rem;
+  }
+  .calculator__keys {
+    gap: 0.6rem;
+  }
+  .calculator__keys .key {
+    padding: 0.8rem 0.5rem;
+    font-size: 1rem;
+  }
+}
