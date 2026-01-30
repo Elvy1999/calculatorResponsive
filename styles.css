@@ -19,6 +19,11 @@ body {
   gap: 100px;
   padding: 2rem 1rem;
 }
+.page__footer {
+  font-size: 0.95rem;
+  color: #b3b7c3;
+  text-align: center;
+}
 
 .calculator {
   width: min(420px, 92vw);

@@ -6,6 +6,7 @@ const keys = document.querySelector(".calculator__keys");
 // local variables
 let textStream = "";
 let operatorFlag = false;
+
 let calcResultLocal;
 
 // Create an event listener on the .calculator__keys container
@@ -37,6 +38,7 @@ keys.addEventListener("click", (e) => {
 });
 
 function numberKey(number) {
+  if (number == "." && textStream.at(-1) == ".") return;
   textStream += number;
   calcResult.innerHTML = textStream;
   operatorFlag = false;
@@ -44,7 +46,6 @@ function numberKey(number) {
 
 function operatorKey(operator) {
   if (operatorFlag == false) {
-
     textStream += operator;
     calcResult.innerHTML = textStream;
     operatorFlag = true;
@@ -57,6 +58,11 @@ function actionKey(action) {
     calcResult.innerHTML = 0;
     runningTotal = 0;
     textStream = "";
+  }
+  if (action == "delete") {
+    textStream = textStream.slice(0, -1);
+    calcResult.innerHTML = textStream.length ? textStream : 0;
+    operatorFlag = /[+\-*/]$/.test(textStream);
   }
   if (action == "equals") {
     equalsEvaluation();
@@ -99,11 +105,9 @@ function equalsEvaluation() {
     }
     runningTotal = operations[operation](runningTotal, secondNum);
   }
-  //calcResultLocal = runningTotal;
   //calcHistory.innerHTML = runningTotal;
   if (divideZeroFlag == false) {
     calcResultLocal = runningTotal;
-    calcResult.innerHTML = runningTotal;
-
+    calcHistory.innerHTML = calcResultLocal;
   }
 }
